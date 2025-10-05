@@ -188,19 +188,21 @@ Sayt quyidagi qurilmalar uchun moslashtirilgan:
 
 ## Email Sozlamalari
 
-Email xabarlarni jo'natish uchun `.env` faylida quyidagi sozlamalarni o'rnating:
+**Hozirgi holat**: Console backend ishlatilmoqda (kontakt xabarlari terminalda ko'rinadi).
 
-```
-EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-EMAIL_HOST_USER=your-email@gmail.com
-EMAIL_HOST_PASSWORD=your-password
-DEFAULT_FROM_EMAIL=your-email@gmail.com
+**Production uchun**: Email xabarlarni haqiqiy jo'natish uchun `portfolio_project/settings.py` faylida EMAIL sozlamalarini o'zgartiring:
+
+```python
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-email@gmail.com'
+EMAIL_HOST_PASSWORD = 'your-app-password'
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='your-email@gmail.com')
 ```
 
-Hozirda console backend ishlatilmoqda (xabarlar terminalda ko'rinadi).
+**Gmail uchun**: App Password yaratishingiz kerak (https://myaccount.google.com/apppasswords)
 
 ## Qo'shimcha Ma'lumotlar
 
