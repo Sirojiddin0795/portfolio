@@ -1,0 +1,44 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Projects - Portfolio{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-5xl font-bold text-center mb-12 gradient-bg bg-clip-text text-transparent fade-in">My Projects</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for project in projects %}
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-48 object-cover">
+                {% else %}
+                <div class="w-full h-48 bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center">
+                    <i class="fas fa-project-diagram text-6xl text-white"></i>
+                </div>
+                {% endif %}
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">{{ project.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ project.description }}</p>
+                    <div class="flex space-x-4">
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank" class="gradient-bg text-white px-4 py-2 rounded-lg hover-scale inline-flex items-center">
+                            <i class="fab fa-github mr-2"></i> GitHub
+                        </a>
+                        {% endif %}
+                        {% if project.live_demo_link %}
+                        <a href="{{ project.live_demo_link }}" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover-scale inline-flex items-center">
+                            <i class="fas fa-external-link-alt mr-2"></i> Demo
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-12">
+                <p class="text-gray-500 text-lg">No projects available yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

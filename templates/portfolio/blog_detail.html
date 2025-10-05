@@ -1,0 +1,26 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}{{ post.title }} - Portfolio{% endblock %}
+
+{% block content %}
+<article class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-5xl font-bold mb-6 gradient-bg bg-clip-text text-transparent fade-in">{{ post.title }}</h1>
+        <p class="text-gray-600 mb-8">Published on {{ post.created_at|date:"F d, Y" }}</p>
+        
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-96 object-cover rounded-lg shadow-lg mb-8">
+        {% endif %}
+        
+        <div class="bg-white p-8 rounded-lg shadow-lg prose prose-lg max-w-none">
+            {{ post.content|safe }}
+        </div>
+        
+        <div class="mt-8">
+            <a href="{% url 'blog_list' %}" class="gradient-bg text-white px-6 py-3 rounded-lg hover-scale inline-flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Blog
+            </a>
+        </div>
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Lessons - Portfolio{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-5xl font-bold text-center mb-12 gradient-bg bg-clip-text text-transparent fade-in">Video Lessons</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for lesson in lessons %}
+            <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-scale">
+                <div class="relative">
+                    {% if lesson.thumbnail %}
+                    <img src="{{ lesson.thumbnail.url }}" alt="{{ lesson.title }}" class="w-full h-48 object-cover">
+                    {% else %}
+                    <div class="w-full h-48 bg-gradient-to-r from-blue-400 to-purple-400 flex items-center justify-center">
+                        <i class="fas fa-video text-6xl text-white"></i>
+                    </div>
+                    {% endif %}
+                    <a href="{{ lesson.get_youtube_embed_url }}" target="_blank" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 hover:bg-opacity-30 transition">
+                        <i class="fas fa-play-circle text-6xl text-white opacity-80 hover:opacity-100 transition"></i>
+                    </a>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">{{ lesson.title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ lesson.description }}</p>
+                    <p class="text-sm text-gray-500">{{ lesson.created_at|date:"F d, Y" }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-12">
+                <p class="text-gray-500 text-lg">No lessons available yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

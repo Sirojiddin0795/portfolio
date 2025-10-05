@@ -1,0 +1,31 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Skills - Portfolio{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-5xl font-bold text-center mb-12 gradient-bg bg-clip-text text-transparent fade-in">My Skills</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for skill in skills %}
+            <div class="bg-white p-6 rounded-lg shadow-lg hover-scale">
+                <div class="flex items-center mb-4">
+                    {% if skill.icon %}
+                    <i class="{{ skill.icon }} text-4xl text-purple-600 mr-4"></i>
+                    {% endif %}
+                    <h3 class="text-xl font-bold">{{ skill.title }}</h3>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
+                    <div class="gradient-bg h-4 rounded-full transition-all duration-1000" style="width: {{ skill.level }}%"></div>
+                </div>
+                <p class="text-right text-gray-600 font-semibold">{{ skill.level }}%</p>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-12">
+                <p class="text-gray-500 text-lg">No skills available yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
