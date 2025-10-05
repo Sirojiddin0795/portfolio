@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'ckeditor_uploader',
-    'portfolio',
+    'portfolio_project.portfolio',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +69,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                'portfolio.context_processors.home_content_processor',
+                'portfolio_project.portfolio.context_processors.home_content_processor',
             ],
         },
     },
